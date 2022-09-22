@@ -7,11 +7,5 @@ def inicio(request):
 def nosotros(request):
     return render(request, 'pages/nosotros.html')
 
-def index(request):
-    return render(request, 'libros/index.html')
-    
-def crear(request):
-    return render(request, 'libros/crear.html')
-
-def editar(request):
-    return render(request, 'libros/editar.html')
+def libros(request):
+    return render(request, 'libros/libros.html')
