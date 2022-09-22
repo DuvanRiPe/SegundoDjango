@@ -5,5 +5,13 @@
 {% endblock %}
 
 {% block content %}
-    Formulario para editar un libro
+    <div class="card mt-5 m-auto" style="width: 70rem;">
+        <div class="card-header">
+            Editar un libro
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del libro</h5>
+            {% include 'libros/form.html' %}
+        </div>
+    </div>
 {% endblock  %}
