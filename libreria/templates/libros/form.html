@@ -2,8 +2,20 @@
     {% csrf_token %}
     {% for campo in formulario  %}
         <div class="mb-3">
-            <label for="" class="form-label">Nombre: </label>
-            <input type="text"  class="form-control" placeholder="Name">
+            <!-- {{campo.label}} con esto colocaremos los nombres que estan en el modelo en verbose_name asi mostramos en pantalla lo que colocamos ahi.  -->
+            <label for="" class="form-label">{{campo.label}}: </label>
+            <!-- {{campo.field.widget.input_type}} con esto lo que hacemos es que mire que tipo de campo va a mostrar de todos los campos que esta recibiendo de nuestra tabla -->
+            <input 
+            type="{{campo.field.widget.input_type}}"  
+            class="form-control" 
+            placeholder="{{campo.name}}"
+            name="{{campo.name}}"
+            id="{{campo.id}}"
+            aria-describedby="helpId"/>
+        </div>
+        <div class="col-12 help-text">
+            {{campo.errors}}
         </div>
     {% endfor %}
+    <input name="" id="" type="submit" class="btn btn-success" value="Enviar Información">
 </form>

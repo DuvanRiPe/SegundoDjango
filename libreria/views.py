@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Libro # importamos el modelo
 from .forms import LibroForm
 
@@ -17,7 +17,10 @@ def libros(request):
     return render(request, 'libros/libros.html', {'libros': libros})
 
 def crear(request):
-    formulario=LibroForm(request.POST or None)
+    formulario=LibroForm(request.POST or None, request.FILES or None)
+    if formulario.is_valid():
+        formulario.save()
+        return redirect('libros')
     return render(request, 'libros/crear.html', {'formulario': formulario})
 
 def editar(request):
