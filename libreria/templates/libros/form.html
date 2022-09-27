@@ -4,6 +4,13 @@
         <div class="mb-3">
             <!-- {{campo.label}} con esto colocaremos los nombres que estan en el modelo en verbose_name asi mostramos en pantalla lo que colocamos ahi.  -->
             <label for="" class="form-label">{{campo.label}}: </label>
+
+            {% if campo.field.widget.input_type == 'file' and campo.value  %}
+                <br>
+                <img class="m-2" src="{{MEDIA_URL}}/imagenes/{{campo.value}}" width="100" alt="imagenLibro">
+            {% endif %}
+
+
             <!-- {{campo.field.widget.input_type}} con esto lo que hacemos es que mire que tipo de campo va a mostrar de todos los campos que esta recibiendo de nuestra tabla -->
             <input 
             type="{{campo.field.widget.input_type}}"  
@@ -11,7 +18,8 @@
             placeholder="{{campo.name}}"
             name="{{campo.name}}"
             id="{{campo.id}}"
-            aria-describedby="helpId"/>
+            aria-describedby="helpId"
+            value="{{campo.value}}"/>
         </div>
         <div class="col-12 help-text">
             {{campo.errors}}
