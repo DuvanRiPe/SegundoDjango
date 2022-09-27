@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from .models import Libro # importamos el modelo
+from .forms import LibroForm
 
-# importamos el modelo
-from .models import Libro
+
 # Create your views here.
 def inicio(request):
     return render(request, 'pages/inicio.html')
@@ -16,7 +17,8 @@ def libros(request):
     return render(request, 'libros/libros.html', {'libros': libros})
 
 def crear(request):
-    return render(request, 'libros/crear.html')
+    formulario=LibroForm(request.POST or None)
+    return render(request, 'libros/crear.html', {'formulario': formulario})
 
 def editar(request):
     return render(request, 'libros/editar.html')

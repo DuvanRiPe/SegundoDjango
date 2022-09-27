@@ -1,6 +1,9 @@
 <form enctype="multipart/form-data" method="post" action="">
-    <div class="mb-3">
-        <label for="" class="form-label">Nombre: </label>
-        <input type="text"  class="form-control" placeholder="Name">
-    </div>
+    {% csrf_token %}
+    {% for campo in formulario  %}
+        <div class="mb-3">
+            <label for="" class="form-label">Nombre: </label>
+            <input type="text"  class="form-control" placeholder="Name">
+        </div>
+    {% endfor %}
 </form>
