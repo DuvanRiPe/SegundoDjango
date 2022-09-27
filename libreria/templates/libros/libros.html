@@ -22,13 +22,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for Libro in libros  %}
                     <tr>
-                        <td>0</td>
-                        <td>Django con Python</td>
-                        <td>Imagen</td>
-                        <td>Clases desde 0 con django usando python</td>
+                        <td>{{Libro.id}}</td>
+                        <td>{{Libro.titulo}}</td>
+                        <!-- para que se vea la imagen que recibimos del modelo debemos primero agregar la ruta Libro.imagen agrearle un Url quedaria Libro.imagen.url -->
+                        <!-- despues buscaremos el archivo settings.py de nuestro proyecto, asi importamos os, luego nos dirigimos al final para agregarle codigo que seria este: 
+                            MEDIA_ROOT=os.path.join(BASE_DIR,'')
+                            MEDIA_URL='/imagenes/' -->
+                        <!-- Luego debemos ir a urls.py de nuestro proyecto y agregar las media:
+                            
+                            from django.conf import settings
+                            from django.contrib.staticfiles.urls import static
+                        -->
+                        <!-- ahora concatenamos despues de nuestra array de urls
+                            
+                            urlpatterns=[
+                                aqui van las urls
+                            ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                        -->
+                        <td>
+                            <img src="{{Libro.imagen.url}}" alt="imagenLibro" height="100">
+                            
+                        </td>
+                        <td>{{Libro.descripcion}}</td>
                         <td> <a href="{% url 'editar' %}" class="btn btn-info">editar</a> | <a href="" class="btn btn-danger">Borrar</a></td>
                     </tr>
+                    {% endfor %}
                 </tbody>
             </table>
 
